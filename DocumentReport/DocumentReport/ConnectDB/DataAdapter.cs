@@ -1,18 +1,18 @@
 ﻿namespace DocumentReport
 {
+    using Npgsql;
     using System;
     using System.Data;
-    using System.Data.OracleClient;
 
     public static class DataAdapter
     {
         public static DataTable SelectData(string query)
         {
             DataTable dt = new DataTable();
-            using (OracleConnection connection = new OracleConnection(InfoConnection.ConnectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(InfoConnection.ConnectionString))
             {
                 connection.Open();
-                OracleCommand cmd = new OracleCommand(query, connection);
+                NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
                 dt.Load(cmd.ExecuteReader());
                 connection.Close();
             }
@@ -22,10 +22,10 @@
         public static T GetValue<T>(string query)
         {
             object value = null;
-            using (OracleConnection connection = new OracleConnection(InfoConnection.ConnectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(InfoConnection.ConnectionString))
             {
                 connection.Open();
-                OracleCommand cmd = new OracleCommand(query, connection);
+                NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
                 value = cmd.ExecuteScalar();
                 connection.Close();
 
@@ -60,10 +60,10 @@
         public static object GetScalarValue(string query)
         {
             object value = null;
-            using (OracleConnection connection = new OracleConnection(InfoConnection.ConnectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(InfoConnection.ConnectionString))
             {
                 connection.Open();
-                OracleCommand cmd = new OracleCommand(query, connection);
+                NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
                 value = cmd.ExecuteScalar();
             }
             return value ?? string.Empty;
@@ -71,10 +71,10 @@
 
         public static void ExecutetNonQuery(string query)
         {
-            using (OracleConnection connection = new OracleConnection(InfoConnection.ConnectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(InfoConnection.ConnectionString))
             {
                 connection.Open();
-                OracleCommand cmd = new OracleCommand(query, connection);
+                NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
             }
         }

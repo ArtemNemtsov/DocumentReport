@@ -20,9 +20,13 @@
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
-            MainForm main = new MainForm();
-            main.WindowState = FormWindowState.Maximized;
             InfoConnection.BuildConnectionString();
+
+            MainForm main = new MainForm
+            {
+                WindowState = FormWindowState.Maximized
+            };
+
             Application.Run(main);
         }
     }
