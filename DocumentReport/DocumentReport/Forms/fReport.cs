@@ -6,16 +6,24 @@ namespace DocumentReport.Forms
     public partial class fReport : DevExpress.XtraEditors.XtraForm
     {
         internal string NameView { get; set; }
+        internal string NameScheme { get; set; }
 
-        public fReport()
+        private fReport()
         {
             InitializeComponent();
         }
 
-        // после загрузки формы данные асинхронно загрузятся
-        private async void FTask2_Load(object sender, EventArgs e)
+        // при создание экземпляра классав асинхронно вызывается метод
+        public static async Task<fReport> Create(string nameScheme, string nameView)
         {
-            await ReftreshReportAsync();
+            var myReport = new fReport
+            {
+                NameScheme = nameScheme,
+                NameView = nameView
+            };
+
+            await myReport.ReftreshReportAsync();
+            return myReport;
         }
 
         private async void btnRefresh_Click(object sender, EventArgs e)
@@ -27,7 +35,7 @@ namespace DocumentReport.Forms
         private async Task ReftreshReportAsync()
         {
             bsTask2.DataSource = null;
-            bsTask2.DataSource = await Task.Run(() => DataAdapter.SelectData($"select * from {NameView}"));
+            bsTask2.DataSource = await Task.Run(() => DataAdapter.SelectData($"select * from {NameScheme}.{NameView} "));
         }
     }
 }

@@ -56,8 +56,17 @@
             // 
             // gridVTask2
             // 
+            this.gridVTask2.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridVTask2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridVTask2.Appearance.SelectedRow.BackColor = System.Drawing.Color.Green;
+            this.gridVTask2.Appearance.SelectedRow.Options.UseBackColor = true;
             this.gridVTask2.GridControl = this.gridCTask2;
             this.gridVTask2.Name = "gridVTask2";
+            this.gridVTask2.OptionsBehavior.Editable = false;
+            this.gridVTask2.OptionsPrint.PrintPreview = true;
+            this.gridVTask2.OptionsSelection.MultiSelect = true;
+            this.gridVTask2.OptionsView.HeaderFilterButtonShowMode = DevExpress.XtraEditors.Controls.FilterButtonShowMode.Button;
+            this.gridVTask2.OptionsView.ShowAutoFilterRow = true;
             // 
             // backPanel
             // 
@@ -85,7 +94,7 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(8, 8);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // fParentReport
+            // fReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -93,8 +102,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.gridCTask2);
             this.Controls.Add(this.backPanel);
-            this.Name = "fParentReport";
-            this.Load += new System.EventHandler(this.FTask2_Load);
+            this.Name = "fReport";
             ((System.ComponentModel.ISupportInitialize)(this.gridCTask2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTask2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridVTask2)).EndInit();
